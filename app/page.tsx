@@ -47,7 +47,7 @@ export default function Home() {
           You don't feel like going? Get a good reason to reject whatever idea your friend has!
         </h1>
         {noRes && <p className="text-3xl text-gray-700 dark:text-gray-300">{noRes}</p>}
-        <button onClick={handleNoPress} className="rounded-md bg-blue-500 px-4 py-2 text-white hover:bg-blue-600">
+        <button onClick={handleNoPress} className="rounded-md bg-gradient-to-r from-red-600 to-red-700 px-4 py-2 text-white hover:bg-blue-600">
           I want to reject!
         </button>
         
