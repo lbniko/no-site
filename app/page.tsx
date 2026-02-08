@@ -7,6 +7,8 @@ import { useState, useEffect } from 'react'
 export default function Home() {
   
 
+  useEffect(() => {
+
   if (localStorage.getItem('hun') === 'true') {
 
     redirect('/hu')
@@ -14,7 +16,7 @@ export default function Home() {
   } else {
     redirect('/en')
   }
-
+}, []);
 
   
 }
