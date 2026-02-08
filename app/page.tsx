@@ -2,16 +2,20 @@
 
 
 import Image from "next/image";
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 export default function Home() {
   const [error, setError] = useState('')
   const [noRes, setNoRes] = useState('')
+  const [loading, setLoading] = useState(false)
+  const [typedText, setTypedText] = useState('')
+
 
 
 
   const handleNoPress = async (e:React.FormEvent) => {
     e.preventDefault();
+    setLoading(true)
     try{
 
       const res = await fetch('https://naas.isalman.dev/no', {
@@ -24,6 +28,7 @@ export default function Home() {
       const data = await res.json()
       console.log(data.reason)
       setNoRes(data.reason)
+      setLoading(false)
 
     } catch (err: any) {
     setError(err.message)
@@ -31,6 +36,29 @@ export default function Home() {
 
 
   }
+
+  useEffect(() => {
+  if (!noRes) return;
+
+  setTypedText("");
+
+  let i = -1;
+
+  const interval = setInterval(() => {
+  if (i < noRes.length) {
+    setTypedText(prev => prev + noRes.charAt(i));
+    i++;
+  } else {
+    clearInterval(interval);
+  }
+}, 21);
+
+
+  return () => clearInterval(interval);
+}, [noRes]);
+
+
+  
 
 
 
@@ -48,15 +76,18 @@ export default function Home() {
 </p>
   </div>
 
-  {noRes && <p className="text-3xl text-center text-gray-700 dark:text-gray-300">{noRes}</p>}
+  {noRes && <p className="text-3xl text-center text-gray-700 dark:text-gray-300">{typedText}</p>}
 
   <button
     onClick={handleNoPress}
-    className="rounded-md bg-gradient-to-r from-red-600 to-red-700 px-4 py-2 text-white hover:bg-blue-600"
+    disabled={loading}
+    className="rounded-md bg-gradient-to-r from-red-600 to-red-700 px-4 py-2 text-white hover:bg-gradient-to-r hover:from-red-700 hover:to-red-800 transition-colors duration-200"
   >
-    I want to reject!
+    {loading ? 'Getting rejection...' : 'I want to reject!'}
   </button>
 </div>
 
   );
 }
+
+
