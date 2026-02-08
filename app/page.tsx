@@ -41,17 +41,22 @@ export default function Home() {
 
 
   return (
-    <div className="flex flex-col space-y-14 min-h-screen items-center justify-center bg-gradient-to-br from-zinc-900 to-red-950 font-sans dark:bg-black">
-      
-       <h1 className="text-4xl font-bold text-gray-900 dark:text-white">
-          You don't feel like going? Get a good reason to reject whatever idea your friend has!
-        </h1>
-        {noRes && <p className="text-3xl text-gray-700 dark:text-gray-300">{noRes}</p>}
-        <button onClick={handleNoPress} className="rounded-md bg-gradient-to-r from-red-600 to-red-700 px-4 py-2 text-white hover:bg-blue-600">
-          I want to reject!
-        </button>
-        
-      
-    </div>
+   <div className="flex flex-col items-center justify-center min-h-screen space-y-14 bg-gradient-to-br from-zinc-900 to-red-950 font-sans dark:bg-black px-4">
+  <div className="w-full flex justify-center">
+    <p className="w-full max-w-4xl text-balance text-center text-4xl font-bold text-gray-900 dark:text-white">
+  You don't feel like going? Get a good reason to reject whatever idea your friend has!
+</p>
+  </div>
+
+  {noRes && <p className="text-3xl text-center text-gray-700 dark:text-gray-300">{noRes}</p>}
+
+  <button
+    onClick={handleNoPress}
+    className="rounded-md bg-gradient-to-r from-red-600 to-red-700 px-4 py-2 text-white hover:bg-blue-600"
+  >
+    I want to reject!
+  </button>
+</div>
+
   );
 }
