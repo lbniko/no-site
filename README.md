@@ -17,7 +17,7 @@ cp .env.default .env
 ```
 
 Then, sign up for [TranslateAPI](translateapi.ai), and create your API key.
-Pu the API key in .env as instructed.
+Put the API key in .env as instructed.
 
 ## Trying it out
 
